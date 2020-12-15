@@ -1,70 +1,57 @@
 package com.example.Foood.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Cart 
 {
 	
-	@Id
-	@GeneratedValue
+	@Id	
 	int id;
 	String name;
-	int Price;
-	int Quantity;
+	int price;
+	int quantity;
 	
 	
 	
-	public Cart(int id, String name, int price, int quantity)
-	{
+	public Cart(int id, String name, int price, int quantity) {
 		super();
-		this.id = id;   
+		this.id = id;
 		this.name = name;
-		Price = price;
-		Quantity = quantity;
+		this.price = price;
+		this.quantity = quantity;
 	}
-	public Cart()
-	{}
-
-
-
+	
+	
+	public Cart() {}
+	
 	public int getId() {
 		return id;
 	}
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public int getPrice() {
-		return Price;
+		return price;
 	}
 	public void setPrice(int price) {
-		Price = price;
+		this.price = price;
 	}
 	public int getQuantity() {
-		return Quantity;
+		return quantity;
 	}
 	public void setQuantity(int quantity) {
-		Quantity = quantity;
+		this.quantity = quantity;
 	}
-
-	@Override
-	public String toString() {
-		return "Cart [id=" + id + ", name=" + name + ", Price=" + Price + ", Quantity=" + Quantity + "]";
-	}
+	
+	
 	
 
 

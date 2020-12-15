@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.Foood.model.Cart;
+import com.example.Foood.model.WrapperCart;
 import com.example.Foood.service.CartService;
 
 
@@ -22,32 +23,32 @@ public class CartController
 		CartService cartService;
 		
 		@RequestMapping("/cart")
-		public List <Cart> getAllMenu()
+		public WrapperCart getAllMenu()
 		{
-			List<Cart> list =cartService.getAllCart();
-			return list;
-			
-		}
-		
-		@RequestMapping("/cart/totalbill")
-		public int totalbill()
-		{
+			WrapperCart objCart=new WrapperCart();
 			List<Cart> list =cartService.getAllCart();
 			int total=0;
+			
 			for (int i = 0; i < list.size(); i++) {
 			    Cart ele = list.get(i);
 			    total+=ele.getPrice()*ele.getQuantity();
 			}
-			
-			return total;
-			
+			objCart.setCartList(list);
+			objCart.setTotalAmount(total);
+			return objCart;
+						
 		}
 		
-		@RequestMapping(method = RequestMethod.POST, value="/Cart")
+		@RequestMapping(method = RequestMethod.POST, value="/cart")
 		public void addCart(@RequestBody Cart cart)
 		{
 			cartService.addCart(cart);
 		}
+		
+		
+		
+		
+	
 		
 		@RequestMapping(method = RequestMethod.PUT, value="/cart/{id}")
 		public void updatecart(@RequestBody Cart cart, @PathVariable int id)
